@@ -6,7 +6,7 @@
   font-weight: 400;
 
   color: white;
-  background-image: url("https://i.imgur.com/SHZe50s.gif");
+  background: url("https://i.imgur.com/SHZe50s.gif") fixed;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,4 +24,10 @@ body {
 
 table {
   margin: 0 auto;
+}
+
+.rainbow {
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+  -webkit-background-clip: text;
+  color: transparent;
 }

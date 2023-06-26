@@ -16,3 +16,8 @@
     opacity: 0;
   }
 }
+
+a[rel="copyright"] {
+  color: inherit;
+  text-decoration: none;
+}
