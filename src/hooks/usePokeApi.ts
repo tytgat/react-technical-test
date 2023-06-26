@@ -1,19 +1,13 @@
-import { ClientArgs, MainClient, Name, NamedAPIResourceList, UtilityClient } from "pokenode-ts";
+import { MainClient, Name, NamedAPIResourceList } from "pokenode-ts";
 import { UseBaseQueryOptions, useQuery } from "react-query";
 import { useId } from "react";
 
-class PokeClient extends MainClient {
-  public utility: UtilityClient;
+const api = new MainClient();
 
-  constructor(clientOptions?: ClientArgs) {
-    super(clientOptions);
-    this.utility = new UtilityClient(clientOptions);
-  }
-}
-
-const api = new PokeClient();
-
-const usePokeApi = <T>(fetcher: (api: PokeClient) => Promise<T>, options?: UseBaseQueryOptions) =>
+/**
+ * @link https://pokenode-ts.vercel.app/
+ */
+const usePokeApi = <T>(fetcher: (api: MainClient) => Promise<T>, options?: UseBaseQueryOptions) =>
   useQuery<T>(useId(), () => fetcher(api), options as any);
 
 export default usePokeApi;
