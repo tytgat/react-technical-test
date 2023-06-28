@@ -2,22 +2,17 @@ import { Pokemon, PokemonSpecies } from "pokenode-ts";
 import usePokeApi, { getLocalizedName, resolveResources } from "src/hooks/usePokeApi";
 
 interface PokemonProps {
-  species: PokemonSpecies;
+  pokemon: Pokemon;
 }
 
-function Pokemon({ species }: PokemonProps) {
-  const { data: pokemon } = usePokeApi(async (api) => {
-    const defaultVariety = species.varieties.find((variety) => variety.is_default);
-    if (defaultVariety) {
-      return api.utility.getResourceByUrl<Pokemon>(defaultVariety.pokemon.url);
-    }
-  });
+function Pokemon({ pokemon }: PokemonProps) {
+  const { data: species } = usePokeApi((api) => api.utility.getResourceByUrl<PokemonSpecies>(pokemon.species.url));
 
-  return (
+  return species ? (
     <tr>
       <td width="1">
         <img
-          src={pokemon?.sprites.other?.["official-artwork"].front_default ?? "src/assets/pokeball.png"}
+          src={pokemon.sprites.other?.["official-artwork"].front_default ?? "src/assets/pokeball.png"}
           style={{
             height: "3em",
           }}
@@ -25,21 +20,31 @@ function Pokemon({ species }: PokemonProps) {
       </td>
       <td>{getLocalizedName(species)}</td>
     </tr>
+  ) : (
+    <tr>
+      <td width="1">
+        <img
+          src={"src/assets/pokeball.png"}
+          style={{
+            height: "3em",
+          }}
+        />
+      </td>
+      <td></td>
+    </tr>
   );
 }
 
 function PokemonList() {
-  const { data: pokemonSpecies } = usePokeApi((api) =>
-    api.pokemon.listPokemonSpecies(0, 10).then(resolveResources<PokemonSpecies>)
-  );
+  const { data: pokemon } = usePokeApi((api) => api.pokemon.listPokemons(0, 10).then(resolveResources<Pokemon>));
 
-  if (!pokemonSpecies) return <div>Chargement ...</div>;
+  if (!pokemon) return <div>Chargement ...</div>;
 
   return (
     <table border={1} style={{ background: "white", color: "blue", width: 800 }}>
       <tbody>
-        {pokemonSpecies.results.map((s) => (
-          <Pokemon key={s.id} species={s} />
+        {pokemon.results.map((p) => (
+          <Pokemon key={p.id} pokemon={p} />
         ))}
       </tbody>
     </table>
