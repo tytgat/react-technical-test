@@ -1,7 +1,7 @@
 @import "blink.css";
 
 :root {
-  font-family: "Comic Sans MS", sans-serif;
+  font-family: "Arial", "Comic Sans MS", sans-serif;
   line-height: 1.4;
   font-weight: 400;
 
@@ -23,7 +23,36 @@ body {
 }
 
 table {
-  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.poke-table {
+  background: white;
+  color: black;
+  width: 20rem;
+}
+
+.poke-table > tbody > tr:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.pokemon-entry {
+  background: white;
+  color: black;
+  max-width: 900px;
+  display: flex;
+  width:100%;
+  justify-content: space-between;
+  padding:2rem;
+  margin-left: 0.5rem;
+}
+
+.pokemon-type {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50px;
+  padding:0.2rem 0.5rem;
+  text-transform: capitalize;
 }
 
 .rainbow {

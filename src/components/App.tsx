@@ -28,7 +28,7 @@ function App() {
   return (
     <>
       <img src="src/assets/logo.png" width="800" />
-      <h1 className="rainbow">Bienvenue sur le site des amis des pokemons</h1>
+      <h1 className="rainbow">Bienvenue sur le site des amis des Pokémons</h1>
       <h5 className="blink">⭐ Yay ! ⭐</h5>
       <PokemonList />
       <br />
