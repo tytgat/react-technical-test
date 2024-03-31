@@ -16,3 +16,4 @@ L'idéal serait d'y consacrer **entre 1h et 1h30**, pas plus. Il est inutile de 
 // TODO
 - Vulnérabilités sur les versions de lib (vite & axios)
 
+Note: bon, j'ai vraiment mis beaucoup plus de temps qu'annoncé, mais j'ai trouvé l'exercice très sympa :)
